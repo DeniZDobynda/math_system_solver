@@ -177,6 +177,20 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aO-aG-pLz">
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="57" placeholderIntrinsicHeight="29" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bBj-UZ-1Aw">
+                                                <connections>
+                                                    <action selector="methodSwitch:" destination="3Sj-RD-x5W" eventType="valueChanged" id="ZV2-cP-FEG"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Gausse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGv-Eg-Ohu">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" text="System" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-4Q-sVr">
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -220,6 +234,7 @@
                         <outlet property="M43" destination="bzx-hk-gds" id="PfL-8g-tQv"/>
                         <outlet property="M44" destination="d5u-hF-p0l" id="q4W-d4-Hjz"/>
                         <outlet property="eps" destination="rGH-rE-lka" id="gWn-vR-YF6"/>
+                        <outlet property="methodName" destination="SGv-Eg-Ohu" id="HuC-jb-io0"/>
                         <outlet property="outputTextField" destination="Osb-4Q-sVr" id="uRx-xs-PvI"/>
                         <outlet property="resultsTextField" destination="9H9-8s-DZ7" id="i2K-Cv-MHN"/>
                     </connections>

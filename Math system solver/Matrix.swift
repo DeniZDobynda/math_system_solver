@@ -111,35 +111,38 @@ class Matrix
         return true
     }
     
-    public func tryToSolve() -> Bool
+    public func tryToSolve(_ method: Bool) -> Bool
     {
-        for h in 0...2
-        {
-            let for0 = matrix[h][h]
-            equals[h] /= for0
-            for i in h..<size
+        if !method {
+            for h in 0...2
             {
-                matrix[h][i] /= for0
-            }
-            
-            for i in h+1..<size
-            {
-                let forZero = matrix[i][h]
-                for j in h..<size
+                let for0 = matrix[h][h]
+                equals[h] /= for0
+                for i in h..<size
                 {
-                    matrix[i][j] -= matrix[h][j] * forZero
+                    matrix[h][i] /= for0
                 }
-                equals[i] -= equals[h] * forZero
+                
+                for i in h+1..<size
+                {
+                    let forZero = matrix[i][h]
+                    for j in h..<size
+                    {
+                        matrix[i][j] -= matrix[h][j] * forZero
+                    }
+                    equals[i] -= equals[h] * forZero
+                }
+                
+                if !swapColumns(h: h) { return false }
+                
             }
-            
-            if !swapColumns(h: h) { return false }
-            
+            result[3] = equals[3] / matrix[3][3]
+            result[2] = equals[3] - matrix[2][3] * result[3]
+            result[1] = equals[1] - matrix[1][3] * result[3] - matrix[1][2] * result[2]
+            result[0] = equals[0] - matrix[0][3] * result[3] - matrix[0][2] * result[2] - matrix[0][1] * result[1]
+        } else {
+            ///here goes new method///
         }
-        result[3] = equals[3] / matrix[3][3]
-        result[2] = equals[3] - matrix[2][3] * result[3]
-        result[1] = equals[1] - matrix[1][3] * result[3] - matrix[1][2] * result[2]
-        result[0] = equals[0] - matrix[0][3] * result[3] - matrix[0][2] * result[2] - matrix[0][1] * result[1]
-        
         return isGood()
     }
     

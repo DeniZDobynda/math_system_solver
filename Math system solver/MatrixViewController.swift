@@ -79,6 +79,79 @@ class MatrixViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var eps: UITextField!
     
+    
+    @IBAction func methodSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            methodName?.text? = "Bottom Relax"
+            
+            M11?.text = "10.9"
+            M12?.text = "1.2"
+            M13?.text = "2.1"
+            M14?.text = "0.9"
+            B1?.text = "-7"
+            
+            M21?.text = "1.2"
+            M22?.text = "11.2"
+            M23?.text = "1.5"
+            M24?.text = "2.5"
+            B2?.text = "5.3"
+            
+            M31?.text = "2.1"
+            M32?.text = "1.5"
+            M33?.text = "9.8"
+            M34?.text = "1.3"
+            B3?.text = "10.3"
+            
+            M41?.text = "0.9"
+            M42?.text = "2.5"
+            M43?.text = "1.3"
+            M44?.text = "12.1"
+            B4?.text = "24.6"
+            
+            eps?.text = "0.01"
+            
+            method = true
+        } else {
+            methodName?.text? = "Simple Gausse"
+            
+            M11?.text = "1"
+            M12?.text = "0.42"
+            M13?.text = "0.54"
+            M14?.text = "0.66"
+            B1?.text = "0.3"
+            
+            M21?.text = "0.42"
+            M22?.text = "1"
+            M23?.text = "0.32"
+            M24?.text = "0.44"
+            B2?.text = "0.5"
+            
+            M31?.text = "0.54"
+            M32?.text = "0.32"
+            M33?.text = "1"
+            M34?.text = "0.22"
+            B3?.text = "0.7"
+            
+            M41?.text = "0.66"
+            M42?.text = "0.44"
+            M43?.text = "0.22"
+            M44?.text = "1"
+            B4?.text = "0.9"
+            
+            eps?.text = "0.2"
+            
+            method = false
+        }
+    }
+    @IBOutlet weak var methodName: UILabel!
+    
+    
+    var method: Bool = false {
+        didSet {
+            setUpActionButton(UIButton())
+        }
+    }
+    
     @IBAction func setUpActionButton(_ sender: UIButton)
     {
         var matrixToTransform: [[Double]] = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
@@ -122,7 +195,7 @@ class MatrixViewController: UIViewController, UITextFieldDelegate {
         
         outputTextField?.text = matrix.getMatrixInString()
         
-        if matrix.tryToSolve() {
+        if matrix.tryToSolve(method) {
             resultsTextField?.text = matrix.getResultInString()
         } else {
             resultsTextField?.text = "We have some problems here...\nSet up Matrixes and epsilpon\n(for Gausse >=0.2)"
