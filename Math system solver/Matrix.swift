@@ -96,6 +96,21 @@ class Matrix
         return str
     }
     
+    private func swapColumns (h: Int) -> Bool
+    {
+        if matrix[h][h] < 0.000001 {
+            for i in h..<size
+            {
+                if matrix[i][h] > 0.000001 {
+                    swap(&matrix[h], &matrix[i])
+                    return true
+                }
+            }
+            return false
+        }
+        return true
+    }
+    
     public func tryToSolve() -> Bool
     {
         for h in 0...2
@@ -117,7 +132,7 @@ class Matrix
                 equals[i] -= equals[h] * forZero
             }
             
-            
+            if !swapColumns(h: h) { return false }
             
         }
         result[3] = equals[3] / matrix[3][3]
