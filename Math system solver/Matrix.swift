@@ -140,10 +140,57 @@ class Matrix
             result[2] = equals[3] - matrix[2][3] * result[3]
             result[1] = equals[1] - matrix[1][3] * result[3] - matrix[1][2] * result[2]
             result[0] = equals[0] - matrix[0][3] * result[3] - matrix[0][2] * result[2] - matrix[0][1] * result[1]
+            
+            return isGood()
         } else {
             ///here goes new method///
+            //wtf???
+            //why it is so stupid??
+            
+            let omega = 0.5
+            
+            var xk: [Double] = [0,0,0,0]
+            
+            result = equals
+            
+            while !compare(xk: xk) {
+                xk = result
+                
+                for i in 0..<size
+                {
+                    var sum = 0.0
+                    for j in i + 1 ..< size
+                    {
+                        sum += originalMatrix[i][j]*xk[j]
+                    }
+                    sum = (omega/originalMatrix[i][i])*(result[i] - sum) + (1 - omega)*xk[i]
+                    
+                    for k in 0..<i
+                    {
+                        sum -= omega * (originalMatrix[i][k]/originalMatrix[i][i]) * result[k]
+                    }
+                    
+                    result[i] = sum
+                    
+                }
+            }
+            
+            return true
         }
-        return isGood()
+        
+    }
+    
+    private func compare(xk: [Double]) -> Bool
+    {
+        for i in 0..<size
+        {
+            if  fabs(result[i] - xk[i]) > EPS
+            {
+                return false
+            }
+        }
+        
+        return true
     }
     
     public func isGood() -> Bool
