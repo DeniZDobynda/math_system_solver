@@ -79,7 +79,7 @@ class Matrix
             {
                 str += "\(originalMatrix[i][j]); "
             }
-            str += "  =  \(equals[i]) \n"
+            str += "  =  \(equals[i])\n"
         }
         
         return str
@@ -91,7 +91,7 @@ class Matrix
         
         for i in 0..<size
         {
-            str += "X[\(i+1)] = \(result[i]); \n"
+            str += "X[\(i+1)]= \(result[i])\n"
         }
         return str
     }
@@ -147,7 +147,7 @@ class Matrix
             //wtf???
             //why it is so stupid??
             
-            let omega = 0.5
+            let omega = 0.1
             
             var xk: [Double] = [0,0,0,0]
             
@@ -163,7 +163,7 @@ class Matrix
                     {
                         sum += originalMatrix[i][j]*xk[j]
                     }
-                    sum = (omega/originalMatrix[i][i])*(result[i] - sum) + (1 - omega)*xk[i]
+                    sum = (omega/originalMatrix[i][i])*(equals[i] - sum) + (1 - omega)*xk[i]
                     
                     for k in 0..<i
                     {
@@ -175,7 +175,7 @@ class Matrix
                 }
             }
             
-            return true
+            return isGood()
         }
         
     }
@@ -184,7 +184,7 @@ class Matrix
     {
         for i in 0..<size
         {
-            if  fabs(result[i] - xk[i]) > EPS
+            if  fabs(result[i] - xk[i]) > EPS/10000
             {
                 return false
             }

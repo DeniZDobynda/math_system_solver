@@ -108,7 +108,7 @@ class MatrixViewController: UIViewController, UITextFieldDelegate {
             M44?.text = "12.1"
             B4?.text = "24.6"
             
-            eps?.text = "0.01"
+            eps?.text = "0.001"
             
             method = true
         } else {
